@@ -1,0 +1,89 @@
+.custom-placeholder::-webkit-input-placeholder {
+    color: rgb(138, 138, 138);
+}
+
+.accordion {
+    --bs-accordion-color: white;
+    --bs-accordion-bg: transparent;
+    border: none;
+    --bs-accordion-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, border-radius 0.15s ease;
+    --bs-accordion-border-color: transparent;
+    --bs-accordion-border-width: 0;
+    --bs-accordion-border-radius: 20px;
+    --bs-accordion-inner-border-radius: 15px;
+    --bs-accordion-btn-padding-x: .6rem;
+    --bs-accordion-btn-padding-y: .2rem;
+    --bs-accordion-btn-color: white;
+    --bs-accordion-btn-bg: rgb(56, 56, 56);
+    opacity: .5;
+    --bs-accordion-btn-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+    --bs-accordion-btn-icon-width: 1.25rem;
+    --bs-accordion-btn-icon-transform: rotate(-180deg);
+    --bs-accordion-btn-icon-transition: transform 0.2s ease-in-out;
+    --bs-accordion-btn-active-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+    --bs-accordion-btn-focus-border-color: white;
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(239, 239, 241, 0.25);
+    --bs-accordion-body-padding-x: .25rem;
+    --bs-accordion-body-padding-y: .5rem;
+    --bs-accordion-active-color: white;
+    --bs-accordion-active-bg: transparent;
+}
+
+.accordion-item {
+    border: none
+}
+
+.accordion-button::after {
+    content: "";
+    border-radius: 4px;
+    color: white;
+    background: rgb(232, 12, 12)
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: black
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: transparent;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex
+}
