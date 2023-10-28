@@ -31,6 +31,7 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 ======================================================== -->
+
     <style>
         .primary-btn-custom {
             background: #3b4ef8;
@@ -40,19 +41,87 @@
             transition: 0.4s;
             border-radius: 5px;
         }
+
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: black
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: transparent;
+        }
     </style>
 </head>
 
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top">
-        <div class="container d-flex align-items-center justify-content-between">
-            <nav id="navbar" class="navbar">
+    <header id="header" class="fixed-top w-100">
+        <div class="container d-flex align-items-center justify-content-between w-100">
+            <nav id="navbar" class="navbar d-flex align-items-center justify-content-between w-100">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Welcome</a></li>
                     <li><a class="nav-link scrollto" href="#faq">Faq</a></li>
                     <li><a class="getstarted scrollto" href="#contact">Contact</a></li>
+                </ul>
+                <ul class="">
+                    @foreach ($descriptions as $description => $value)
+                        @foreach (Config::get('app.languages') as $language => $locale)
+                            @if ($description == $locale)
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="dropbtn">
+                                            <img style="width: 30px"
+                                                src="{{ asset('design-1/assets/flags/' . app()->getLocale() . '.png') }}"
+                                                alt="flags">
+                                            {{ strtoupper(app()->getLocale()) }}
+                                        </button>
+
+                                        <div class="dropdown-content">
+                                            <a href="{{ url("lang/$locale") }}">
+                                                <img alt="{{ strtoupper(app()->getLocale()) }}"
+                                                    src="{{ asset("design-1/assets/flags/$locale.png") }}"
+                                                    width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endif
+                        @endforeach
+                    @endforeach
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
