@@ -9,9 +9,9 @@
 
     <title>{{ $domain_name }}</title>
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -26,6 +26,50 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('design-1/assets/css/style.css') }}" rel="stylesheet">
+    <style>
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: black
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: transparent;
+        }
+    </style>
 </head>
 
 <body>
@@ -55,7 +99,7 @@
                                 placeholder="Last 4 digits" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn-get-started scrollto">@lang('welcome.SEARCH')</button>
+                    <button type="submit" class="btn-get-started text-dark">@lang('welcome.SEARCH')</button>
                 </div>
             </form>
 
@@ -66,15 +110,43 @@
     <header id="header" class="d-flex align-items-center ">
         <div class="container-fluid d-flex align-items-center justify-content-lg-between">
 
-            <h1 class="logo me-auto me-lg-0"><a href="index.html">{{ env('APP_NAME') }}</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Welcome</a></li>
-                    <li><a class="nav-link scrollto" href="#fqa">FQA</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <li><a class="nav-link scrollto active" href="#hero">@lang('Welcome.Welcome')</a></li>
+                    <li><a class="nav-link scrollto" href="#fqa">FAQ</a></li>
+                    <li><a class="nav-link scrollto" href="#contact">@lang('Welcome.Contact')</a></li>
+                    <li>
+
+                        <ul>
+                            @foreach ($descriptions as $description => $value)
+                                @foreach (Config::get('app.languages') as $language => $locale)
+                                    @if ($description == $locale)
+                                        <li>
+                                            <div class="dropdown">
+                                                <button class="dropbtn">
+                                                    <img style="width: 15px"
+                                                        src="{{ asset('design-1/assets/flags/' . app()->getLocale() . '.png') }}"
+                                                        alt="flags">
+                                                    {{ strtoupper(app()->getLocale()) }}
+                                                </button>
+
+                                                <div class="dropdown-content">
+                                                    <a href="{{ url("lang/$locale") }}">
+                                                        <img alt="{{ strtoupper(app()->getLocale()) }}"
+                                                            src="{{ asset("design-1/assets/flags/$locale.png") }}"
+                                                            width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            @endforeach
+                        </ul>
+                    </li>
+
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -103,12 +175,12 @@
 
             <div class="faq-list">
                 <ul>
-                    <li data-aos="fade-up">
-                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse"
-                            data-bs-target="#faq-list-1">
-                            @lang('welcome.What is')&nbsp;<a
-                                href="{{ $responseData->concept_website_name }}">{{ $responseData->concept_website_name }}</a>?
-                            <i class="bx bx-chevron-down icon-show"></i><i
+                    <li data-aos="fade-up" class="">
+                        <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
+                            class="collapse d-flex" data-bs-target="#faq-list-1">
+                            <a href="{{ $responseData->concept_website_name }}">@lang('welcome.What is')
+                                {{ $responseData->concept_website_name }}?</a><i
+                                class="bx bx-chevron-down icon-show"></i><i
                                 class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                             <p>
@@ -117,11 +189,12 @@
                         </div>
                     </li>
 
+
                     <li data-aos="fade-up" data-aos-delay="100">
                         <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
                             data-bs-target="#faq-list-2" class="collapsed">
-                            @lang('welcome.Why do I see') <a target="_blank" href="{{ $domain }}">&nbsp;
-                                {{ $domain_name }} &nbsp;</a> @lang('welcome.on my bank statement?')
+                            <a target="_blank" href="{{ $domain }}">&nbsp;
+                                @lang('welcome.Why do I see') {{ $domain_name }} &nbsp; @lang('welcome.on my bank statement?')</a>
                             <i class="bx bx-chevron-down icon-show"></i><i
                                 class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
@@ -203,30 +276,27 @@
         <div class="container">
 
             <div class="section-title">
-                <h2>Contact</h2>
-                <p>If you have any questions please contact our team.</p>
+                <h2>@lang('welcome.Contact')</h2>
             </div>
 
             <div class="row mt-5">
 
                 <div class="col-lg-4">
                     <div class="info">
-                        <div class="address">
-                            <i class="bi bi-geo-alt"></i>
-                            <h4>Location:</h4>
-                            <p>A108 Adam Street, New York, NY 535022</p>
-                        </div>
+
 
                         <div class="email">
                             <i class="bi bi-envelope"></i>
-                            <h4>Email:</h4>
-                            <p>info@example.com</p>
+                            <h4>@lang('welcome.Email'):</h4>
+                            <p><a
+                                    href="mailto:{{ $responseData->support_email }}">{{ $responseData->support_email }}</a>
+                            </p>
                         </div>
 
                         <div class="phone">
                             <i class="bi bi-phone"></i>
-                            <h4>Call:</h4>
-                            <p>+1 5589 55488 55s</p>
+                            <h4>@lang('welcome.Phone'):</h4>
+                            <p>tel:{{ $responseData->support_phone }}</p>
                         </div>
 
                     </div>
@@ -239,11 +309,11 @@
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <input type="text" name="name" class="form-control" id="name"
-                                    placeholder="{{ @lang('welcome.Name') }}" required>
+                                    placeholder="@lang('welcome.Name')" required>
                             </div>
                             <div class="col-md-6 form-group mt-3 mt-md-0">
                                 <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="{{ @lang('welcome.Email') }}" required>
+                                    placeholder="@lang('welcome.Email')" required>
                             </div>
                         </div>
                         <div class="form-group mt-3">
@@ -251,7 +321,7 @@
                                 placeholder="Subject" required>
                         </div>
                         <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="{{ @lang('welcome.Message') }}" required></textarea>
+                            <textarea class="form-control" name="message" rows="5" placeholder="@lang('welcome.Message')" required></textarea>
                         </div>
                         <div class="text-center"><button type="submit">@lang('welcome.SEND')</button></div>
                     </form>
