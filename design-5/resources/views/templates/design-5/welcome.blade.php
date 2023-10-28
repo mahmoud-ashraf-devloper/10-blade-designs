@@ -326,7 +326,7 @@
                                 <div class="info-box ">
                                     <i class="bx bx-envelope"></i>
                                     <h3>@lang('welcome.Email'):</h3>
-                                    <p><a style="color: white; margin-left: 1rem"
+                                    <p><a 
                                             href="mailto:{{ $responseData->support_email }}">{{ $responseData->support_email }}</a>
                                     </p>
                                 </div>
