@@ -168,7 +168,6 @@
     <!-- ======= Frequently Asked Questions Section ======= -->
     <section id="fqa" class="faq section-bg">
         <div class="container">
-
             <div class="section-title">
                 <h2>@lang('welcome.Find answers to frequently asked questions here')</h2>
             </div>
@@ -333,7 +332,16 @@
         </div>
     </section><!-- End Contact Section -->
 
-
+    <footer class="d-flex justify-content-center py-4">
+        <p>&copy; @if (env('SERVICE_NAME'))
+                {{ env('SERVICE_NAME') }}
+            @else
+                {{ $responseData->concept_name }}
+            @endif {{ date('Y') }}. {{ $responseData->company_name }} - CR:
+            {{ $responseData->company_business_number }} - {{ $responseData->company_address }},
+            {{ $responseData->company_city }} {{ $responseData->company_postcode }},
+            {{ $responseData->company_country }} | @lang('welcome.All rights reserved.')</p>
+    </footer>
     <!-- Vendor JS Files -->
     <script src="{{ asset('design-1/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('design-1/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
