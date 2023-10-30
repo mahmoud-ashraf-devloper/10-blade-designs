@@ -129,39 +129,34 @@
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo mr-auto"><img src="{{ asset('design-6/assets/img/logo.png') }}"
-                    alt=""></a>
+            <a href="#" class="logo mr-auto"></a>
             <!-- Uncomment below if you prefer to use a text logo -->
             <!-- <h1 class="logo mr-auto"><a href="index.html">Imperial</a></h1> -->
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">@lang('Welcome.Welcome')</a></li>
+                    <li><a class="nav-link scrollto active" href="#hero">@lang('welcome.Welcome')</a></li>
                     <li><a class="nav-link scrollto " href="#about">FAQ</a></li>
 
-                    <li><a class="nav-link scrollto" href="#contact">@lang('Welcome.Contact')</a></li>
+                    <li><a class="nav-link scrollto" href="#contact">@lang('welcome.Contact')</a></li>
 
-                    <li>
-                        <ul class="nav-link">
+                    <li class="dropdown">
+                        <button class="dropbtn">
+                            <img style="width: 15px"
+                                src="{{ asset('design-6/assets/flags/' . app()->getLocale() . '.png') }}"
+                                alt="flags">
+                            {{ strtoupper(app()->getLocale()) }}
+                        </button>
+                        <ul class="dropdown-content">
                             @foreach ($descriptions as $description => $value)
+                                {{-- {{ dd(Config::get('app.languages') ) }} --}}
                                 @foreach (Config::get('app.languages') as $language => $locale)
                                     @if ($description == $locale)
                                         <li>
-                                            <div class="dropdown">
-                                                <button class="dropbtn">
-                                                    <img style="width: 15px"
-                                                        src="{{ asset('design-1/assets/flags/' . app()->getLocale() . '.png') }}"
-                                                        alt="flags">
-                                                    {{ strtoupper(app()->getLocale()) }}
-                                                </button>
-
-                                                <div class="dropdown-content">
-                                                    <a href="{{ url("lang/$locale") }}">
-                                                        <img alt="{{ strtoupper(app()->getLocale()) }}"
-                                                            src="{{ asset("design-1/assets/flags/$locale.png") }}"
-                                                            width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
-                                                </div>
-                                            </div>
+                                            <a href="{{ url("lang/$locale") }}">
+                                                <img alt="{{ strtoupper(app()->getLocale()) }}"
+                                                    src="{{ asset("design-6/assets/flags/$locale.png") }}"
+                                                    width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
                                         </li>
                                     @endif
                                 @endforeach

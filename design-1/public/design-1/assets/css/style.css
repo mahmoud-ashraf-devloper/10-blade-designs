@@ -349,7 +349,9 @@ h6 {
     display: none;
   }
 }
-
+.navbar-mobile ul .dropdown button{
+  color: #111;
+}
 .navbar-mobile {
   position: fixed;
   overflow: hidden;

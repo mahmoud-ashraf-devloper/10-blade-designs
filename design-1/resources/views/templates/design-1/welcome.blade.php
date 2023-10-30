@@ -113,33 +113,29 @@
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-            <nav id="navbar" class="navbar order-last order-lg-0">
+            <nav id="navbar" class="navbar order-last order-lg-0 d-flex justify-content-between">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">@lang('Welcome.Welcome')</a></li>
+                    <li><a class="nav-link scrollto active" href="#hero">@lang('welcome.Welcome')</a></li>
                     <li><a class="nav-link scrollto" href="#fqa">FAQ</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">@lang('Welcome.Contact')</a></li>
-                    <li>
+                    <li><a class="nav-link scrollto" href="#contact">@lang('welcome.Contact')</a></li>
 
-                        <ul>
+                    <li class="dropdown">
+                        <button class="dropbtn">
+                            <img style="width: 15px"
+                                src="{{ asset('design-1/assets/flags/' . app()->getLocale() . '.png') }}"
+                                alt="flags">
+                            {{ strtoupper(app()->getLocale()) }}
+                        </button>
+                        <ul class="dropdown-content">
                             @foreach ($descriptions as $description => $value)
+                                {{-- {{ dd(Config::get('app.languages') ) }} --}}
                                 @foreach (Config::get('app.languages') as $language => $locale)
                                     @if ($description == $locale)
                                         <li>
-                                            <div class="dropdown">
-                                                <button class="dropbtn">
-                                                    <img style="width: 15px"
-                                                        src="{{ asset('design-1/assets/flags/' . app()->getLocale() . '.png') }}"
-                                                        alt="flags">
-                                                    {{ strtoupper(app()->getLocale()) }}
-                                                </button>
-
-                                                <div class="dropdown-content">
-                                                    <a href="{{ url("lang/$locale") }}">
-                                                        <img alt="{{ strtoupper(app()->getLocale()) }}"
-                                                            src="{{ asset("design-1/assets/flags/$locale.png") }}"
-                                                            width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
-                                                </div>
-                                            </div>
+                                            <a href="{{ url("lang/$locale") }}">
+                                                <img alt="{{ strtoupper(app()->getLocale()) }}"
+                                                    src="{{ asset("design-1/assets/flags/$locale.png") }}"
+                                                    width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
                                         </li>
                                     @endif
                                 @endforeach
@@ -147,16 +143,12 @@
                         </ul>
                     </li>
 
+
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
+                
             </nav><!-- .navbar -->
 
-            <div class="header-social-links d-flex align-items-center">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
-            </div>
 
         </div>
     </header><!-- End Header -->
@@ -174,38 +166,33 @@
 
             <div class="faq-list">
                 <ul>
-                    <li data-aos="fade-up" class="">
+                    <li data-aos="fade-up" data-aos-delay="300">
                         <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                            class="collapse d-flex" data-bs-target="#faq-list-1">
-                            <a href="{{ $responseData->concept_website_name }}">@lang('welcome.What is')
-                                {{ $responseData->concept_website_name }}?</a><i
-                                class="bx bx-chevron-down icon-show"></i><i
+                            data-bs-target="#faq-list-1" class="collapsed">@lang('welcome.What is')
+                            {{ $responseData->concept_website_name }}?
+                            <i class="bx bx-chevron-down icon-show"></i><i
                                 class="bx bx-chevron-up icon-close"></i></a>
-                        <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                        <div id="faq-list-1" class="collapse" data-bs-parent=".faq-list">
                             <p>
-                            <p><?php echo isset($descriptions[app()->getLocale()]) ? $descriptions[app()->getLocale()] : $descriptions['en']; ?>
+                                <?php echo isset($descriptions[app()->getLocale()]) ? $descriptions[app()->getLocale()] : $descriptions['en']; ?>
                             </p>
                         </div>
                     </li>
+                   
 
 
-                    <li data-aos="fade-up" data-aos-delay="100">
+                    <li data-aos="fade-up" data-aos-delay="300">
                         <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
-                            data-bs-target="#faq-list-2" class="collapsed">
-                            <a target="_blank" href="{{ $domain }}">&nbsp;
-                                @lang('welcome.Why do I see') {{ $domain_name }} &nbsp; @lang('welcome.on my bank statement?')</a>
+                            data-bs-target="#faq-list-2" class="collapsed"> @lang('welcome.Why do I see') {{ $domain_name }} &nbsp; @lang('welcome.on my bank statement?')
                             <i class="bx bx-chevron-down icon-show"></i><i
                                 class="bx bx-chevron-up icon-close"></i></a>
                         <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
-                            <p>@lang('welcome.If you see') <a href="{{ $domain }}" target="_blank">{{ $domain_name }}
-                                </a> @lang('welcome.on your bank statement, it is because you have purchased a membership with') <a href="https://{{ $responseData->concept_website_name }}"
-                                    target="_blank">{{ $responseData->concept_website_name }}</a>.</p>
-                            <p>@lang('welcome.You have received a welcome e-mail with login credentials to') <a href="https://{{ $responseData->concept_website_name }}"
-                                    target="_blank">{{ $responseData->concept_website_name }}</a> @lang('welcome.after the initial membership purchase. Please check your inbox for that email.')
-                            </p>
+                            @lang('welcome.You have received a welcome e-mail with login credentials to') <a href="https://{{ $responseData->concept_website_name }}"
+                                target="_blank">{{ $responseData->concept_website_name }}</a> @lang('welcome.after the initial membership purchase. Please check your inbox for that email.')
                         </div>
                     </li>
 
+                  
                     <li data-aos="fade-up" data-aos-delay="200">
                         <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse"
                             data-bs-target="#faq-list-3" class="collapsed">
@@ -333,7 +320,7 @@
     </section><!-- End Contact Section -->
 
     <footer class="d-flex justify-content-center py-4">
-        <p>&copy; @if (env('SERVICE_NAME'))
+        <p class="text-center px-6">&copy; @if (env('SERVICE_NAME'))
                 {{ env('SERVICE_NAME') }}
             @else
                 {{ $responseData->concept_name }}
@@ -342,6 +329,8 @@
             {{ $responseData->company_city }} {{ $responseData->company_postcode }},
             {{ $responseData->company_country }} | @lang('welcome.All rights reserved.')</p>
     </footer>
+
+    
     <!-- Vendor JS Files -->
     <script src="{{ asset('design-1/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('design-1/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

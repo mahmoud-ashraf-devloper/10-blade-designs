@@ -44,7 +44,7 @@
 
         .dropbtn {
             background-color: transparent;
-            color: white;
+            color: black;
             padding: 16px;
             font-size: 16px;
             border: none;
@@ -84,6 +84,13 @@
         .dropdown:hover .dropbtn {
             background-color: transparent;
         }
+
+        @media only screen and (max-width: 600px) {       
+            .dropbtn {
+                
+            }
+        }
+
     </style>
 </head>
 
@@ -94,35 +101,32 @@
         <div class="container d-flex align-items-center justify-content-between w-100">
             <nav id="navbar" class="navbar d-flex align-items-center justify-content-between w-100">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Welcome</a></li>
-                    <li><a class="nav-link scrollto" href="#faq">Faq</a></li>
-                    <li><a class="getstarted scrollto" href="#contact">Contact</a></li>
+                    <li><a class="nav-link scrollto active" href="#hero">@lang('welcome.Welcome')</a></li>
+                    <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
+                    <li><a class="getstarted scrollto" href="#contact">@lang('welcome.Contact')</a></li>
                 </ul>
-                <ul class="">
-                    @foreach ($descriptions as $description => $value)
-                        @foreach (Config::get('app.languages') as $language => $locale)
-                            @if ($description == $locale)
-                                <li>
-                                    <div class="dropdown">
-                                        <button class="dropbtn">
-                                            <img style="width: 30px"
-                                                src="{{ asset('design-1/assets/flags/' . app()->getLocale() . '.png') }}"
-                                                alt="flags">
-                                            {{ strtoupper(app()->getLocale()) }}
-                                        </button>
-
-                                        <div class="dropdown-content">
-                                            <a href="{{ url("lang/$locale") }}">
-                                                <img alt="{{ strtoupper(app()->getLocale()) }}"
-                                                    src="{{ asset("design-1/assets/flags/$locale.png") }}"
-                                                    width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
-                                        </div>
-                                    </div>
-                                </li>
-                            @endif
+                <li class="dropdown">
+                    <button class="dropbtn">
+                        <img style="width: 15px"
+                            src="{{ asset('design-3/assets/flags/' . app()->getLocale() . '.png') }}" alt="flags">
+                        {{ strtoupper(app()->getLocale()) }}
+                    </button>
+                    <ul class="dropdown-content">
+                        @foreach ($descriptions as $description => $value)
+                            {{-- {{ dd(Config::get('app.languages') ) }} --}}
+                            @foreach (Config::get('app.languages') as $language => $locale)
+                                @if ($description == $locale)
+                                    <li>
+                                        <a href="{{ url("lang/$locale") }}">
+                                            <img alt="{{ strtoupper(app()->getLocale()) }}"
+                                                src="{{ asset("design-3/assets/flags/$locale.png") }}" width="20"
+                                                height="15"> @php echo __('welcome.'.$language) @endphp</a>
+                                    </li>
+                                @endif
+                            @endforeach
                         @endforeach
-                    @endforeach
-                </ul>
+                    </ul>
+                </li>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
@@ -327,7 +331,7 @@
     </main><!-- End #main -->
 
     <footer class="d-flex justify-content-center py-4">
-        <p>&copy; @if (env('SERVICE_NAME'))
+        <p class="text-center px-6">&copy; @if (env('SERVICE_NAME'))
                 {{ env('SERVICE_NAME') }}
             @else
                 {{ $responseData->concept_name }}

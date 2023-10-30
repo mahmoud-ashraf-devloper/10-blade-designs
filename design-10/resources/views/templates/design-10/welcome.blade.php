@@ -56,7 +56,7 @@
 
         .dropbtn {
             background-color: transparent;
-            color: white;
+            color: black;
             padding: 16px;
             font-size: 16px;
             border: none;
@@ -180,30 +180,26 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">@lang('Welcome.Welcome')</a></li>
+                    <li><a class="nav-link scrollto active" href="#hero">@lang('welcome.Welcome')</a></li>
                     <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
-                    <li><a class="nav-link scrollto" href="#contact">@lang('Welcome.Contact')</a></li>
-                    <li class="">
-                        <ul class="nav-link">
+                    <li><a class="nav-link scrollto" href="#contact">@lang('welcome.Contact')</a></li>
+                    <li class="dropdown">
+                        <button class="dropbtn">
+                            <img style="width: 15px"
+                                src="{{ asset('design-10/assets/flags/' . app()->getLocale() . '.png') }}"
+                                alt="flags">
+                            {{ strtoupper(app()->getLocale()) }}
+                        </button>
+                        <ul class="dropdown-content">
                             @foreach ($descriptions as $description => $value)
+                                {{-- {{ dd(Config::get('app.languages') ) }} --}}
                                 @foreach (Config::get('app.languages') as $language => $locale)
                                     @if ($description == $locale)
                                         <li>
-                                            <div class="dropdown">
-                                                <button class="dropbtn" style="color: black">
-                                                    <img style="width: 30px"
-                                                        src="{{ asset('design-10/assets/flags/' . app()->getLocale() . '.png') }}"
-                                                        alt="flags">
-                                                    {{ strtoupper(app()->getLocale()) }}
-                                                </button>
-
-                                                <div class="dropdown-content">
-                                                    <a href="{{ url("lang/$locale") }}">
-                                                        <img alt="{{ strtoupper(app()->getLocale()) }}"
-                                                            src="{{ asset("design-10/assets/flags/$locale.png") }}"
-                                                            width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
-                                                </div>
-                                            </div>
+                                            <a href="{{ url("lang/$locale") }}">
+                                                <img alt="{{ strtoupper(app()->getLocale()) }}"
+                                                    src="{{ asset("design-10/assets/flags/$locale.png") }}"
+                                                    width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
                                         </li>
                                     @endif
                                 @endforeach
@@ -380,8 +376,8 @@
             <div class="container">
 
                 <div class="row align-items-stretch contact-form-wrap">
-                    <div class="col-lg-6 d-flex ">
-                        <div class="row info" style="box-shadow: none">
+                    <div class="col-lg-6 d-flex flex-column flex-wrap ">
+                        <div class="row  info" style="box-shadow: none">
                             <i class="bx bx-envelope"></i>
                             <h4>@lang('welcome.Email'):</h4>
                             <a
@@ -393,8 +389,6 @@
                             <h4>@lang('welcome.Phone'):</h4>
                             <p>tel:{{ $responseData->support_phone }}</p>
                         </div>
-
-
                     </div>
 
                     <div class="col-lg-6 d-flex ">
@@ -426,7 +420,7 @@
 
     </main><!-- End #main -->
     <footer class="d-flex justify-content-center py-4">
-        <p>&copy; @if (env('SERVICE_NAME'))
+        <p class="text-center px-6">&copy; @if (env('SERVICE_NAME'))
                 {{ env('SERVICE_NAME') }}
             @else
                 {{ $responseData->concept_name }}

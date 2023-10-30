@@ -857,6 +857,9 @@ section {
   border: 0;
 }
 
+.navbar-mobile ul .dropdown button{
+  color: #111;
+}
 .features .nav-link {
   border: 1px solid #b5ccdb;
   padding: 15px;

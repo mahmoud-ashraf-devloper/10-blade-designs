@@ -84,44 +84,42 @@
 
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-center">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Welcome</a></li>
-                    <li><a class="nav-link scrollto active" href="#specials">faq</a></li>
+                    <li><a class="nav-link scrollto active" href="#hero">@lang('welcome.Welcome')</a></li>
+                    <li><a class="nav-link scrollto active" href="#specials">FAQ</a></li>
 
+                    <a class="nav-link scrollto text-white"  href="#contact">@lang('welcome.Contact')</a>
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
-            <a class="book-a-table-btn scrollto" href="#contact">Contact</a>
-            <a>
-                @foreach ($descriptions as $description => $value)
-                    @foreach (Config::get('app.languages') as $language => $locale)
-                        @if ($description == $locale)
-                            <li>
-                                <div class="dropdown">
-                                    <button class="dropbtn">
-                                        <img style="width: 15px"
-                                            src="{{ asset('design-1/assets/flags/' . app()->getLocale() . '.png') }}"
-                                            alt="flags">
-                                        {{ strtoupper(app()->getLocale()) }}
-                                    </button>
-
-                                    <div class="dropdown-content">
-                                        <a href="{{ url("lang/$locale") }}">
-                                            <img alt="{{ strtoupper(app()->getLocale()) }}"
-                                                src="{{ asset("design-1/assets/flags/$locale.png") }}" width="20"
-                                                height="15"> @php echo __('welcome.'.$language) @endphp</a>
-                                    </div>
-                                </div>
-                            </li>
-                        @endif
+            <li class="dropdown">
+                <button class="dropbtn">
+                    <img style="width: 15px"
+                        src="{{ asset('design-4/assets/flags/' . app()->getLocale() . '.png') }}"
+                        alt="flags">
+                    {{ strtoupper(app()->getLocale()) }}
+                </button>
+                <ul class="dropdown-content">
+                    @foreach ($descriptions as $description => $value)
+                        {{-- {{ dd(Config::get('app.languages') ) }} --}}
+                        @foreach (Config::get('app.languages') as $language => $locale)
+                            @if ($description == $locale)
+                                <li style="list-style: none">
+                                    <a href="{{ url("lang/$locale") }}">
+                                        <img alt="{{ strtoupper(app()->getLocale()) }}"
+                                            src="{{ asset("design-4/assets/flags/$locale.png") }}"
+                                            width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
+                                </li>
+                            @endif
+                        @endforeach
                     @endforeach
-                @endforeach
-            </a>
+                </ul>
+            </li>
 
 
         </div>
@@ -212,8 +210,7 @@
                         <ul class="nav nav-tabs flex-column">
                             <li class="nav-item">
                                 <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
-                                    <a href="{{ $responseData->concept_website_name }}">@lang('welcome.What is')
-                                        {{ $responseData->concept_website_name }}?</a>
+                                    @lang('welcome.What is'){{ $responseData->concept_website_name }}?</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#tab-2" target="_blank"
@@ -379,7 +376,7 @@
     </main><!-- End #main -->
 
     <footer class="d-flex justify-content-center py-4">
-        <p>&copy; @if (env('SERVICE_NAME'))
+        <p class="text-center px-6">&copy; @if (env('SERVICE_NAME'))
                 {{ env('SERVICE_NAME') }}
             @else
                 {{ $responseData->concept_name }}

@@ -37,32 +37,33 @@
 
 <body>
 
-    <nav id="navbar" class="container navbar order-last order-lg-0 w-50 mx-auto">
-        <ul class="d-flex justify-content-between w-100 ">
-            <li style="margin-top: 15px"><a class=" nav-link scrollto active" href="#header">@lang('Welcome.Welcome')</a></li>
-            <li style="margin-top: 15px"><a class=" nav-link scrollto" href="#about">FAQ</a></li>
-            <li style="margin-top: 15px"><a class=" nav-link scrollto" href="#contact">@lang('Welcome.Contact')</a></li>
-            <li>
-                <ul>
+    <nav id="navbar" class=" navbar order-last order-lg-0 w-100">
+        <ul class="d-flex justify-content-between w-100">
+            <li class="">
+                <ul class="d-flex justify-content-between" style="padding-left: 0px">
+                    <li  style="margin-top: 15px; margin-right: 20px"><a class=" nav-link scrollto active"
+                            href="#header">@lang('welcome.Welcome')</a></li>
+                    <li  style="margin-top: 15px; margin-right: 20px"><a class=" nav-link scrollto" href="#about">FAQ</a></li>
+                    <li  style="margin-top: 15px; margin-right: 20px"><a class=" nav-link scrollto" href="#contact">@lang('welcome.Contact')</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown ">
+                <button class="dropbtn mr-4">
+                    <img style="width: 15px" src="{{ asset('design-2/assets/flags/' . app()->getLocale() . '.png') }}"
+                        alt="flags">
+                    {{ strtoupper(app()->getLocale()) }}
+                </button>
+                <ul class="dropdown-content">
                     @foreach ($descriptions as $description => $value)
+                        {{-- {{ dd(Config::get('app.languages') ) }} --}}
                         @foreach (Config::get('app.languages') as $language => $locale)
                             @if ($description == $locale)
                                 <li>
-                                    <div class="dropdown">
-                                        <button class="dropbtn">
-                                            <img style="width: 15px"
-                                                src="{{ asset('design-1/assets/flags/' . app()->getLocale() . '.png') }}"
-                                                alt="flags">
-                                            {{ strtoupper(app()->getLocale()) }}
-                                        </button>
-
-                                        <div class="dropdown-content">
-                                            <a href="{{ url("lang/$locale") }}">
-                                                <img alt="{{ strtoupper(app()->getLocale()) }}"
-                                                    src="{{ asset("design-1/assets/flags/$locale.png") }}"
-                                                    width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
-                                        </div>
-                                    </div>
+                                    <a href="{{ url("lang/$locale") }}">
+                                        <img alt="{{ strtoupper(app()->getLocale()) }}"
+                                            src="{{ asset("design-2/assets/flags/$locale.png") }}" width="20"
+                                            height="15"> @php echo __('welcome.'.$language) @endphp</a>
                                 </li>
                             @endif
                         @endforeach
@@ -91,7 +92,7 @@
                         <form class="bg-transparent d-flex flex-column justify-content-center"
                             action="{{ route('send-email') }}" method="post" role="form" class="php-email-form">
                             <div class="row justify-content-center">
-                                <div style="width: 50%" class="form-group w-1/2">
+                                <div style="width: 50%" class="form-group w-1/2 w-100-sm">
                                     <input type="text" name="name"
                                         class="form-control custom-placeholder bg-transparent border-1 border-danger rounded-0 mb-4 text-white"
                                         value="" id="name" placeholder="@lang('welcome.Name')" required>
@@ -99,7 +100,7 @@
                             </div>
                             <div class="row justify-content-center">
 
-                                <div style="width: 50%" class="form-group w-1/2 mt-3 mt-md-0">
+                                <div style="width: 50%" class="form-group w-1/2 w-100-sm mt-3 mt-md-0">
                                     <input type="email"
                                         class="form-control custom-placeholder bg-transparent border-1 border-danger rounded-0 mb-4 text-white"
                                         name="email" value="" id="email" placeholder="@lang('welcome.Email')"

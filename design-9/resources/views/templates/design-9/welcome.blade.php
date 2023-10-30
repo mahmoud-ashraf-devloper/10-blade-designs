@@ -153,31 +153,29 @@
 <body>
 
     <div class="lang nav-link">
-        <div class="">
-            @foreach ($descriptions as $description => $value)
-                @foreach (Config::get('app.languages') as $language => $locale)
-                    @if ($description == $locale)
-                        <span>
-                            <div class="dropdown">
-                                <button class="dropbtn">
-                                    <img style="width: 30px"
-                                        src="{{ asset('design-9/assets/flags/' . app()->getLocale() . '.png') }}"
-                                        alt="flags">
-                                    {{ strtoupper(app()->getLocale()) }}
-                                </button>
-
-                                <div class="dropdown-content" style="position: absolute; z-index: 2000;">
-                                    <a href="{{ url("lang/$locale") }}">
-                                        <img alt="{{ strtoupper(app()->getLocale()) }}"
-                                            src="{{ asset("design-9/assets/flags/$locale.png") }}" width="20"
-                                            height="15"> @php echo __('welcome.'.$language) @endphp</a>
-                                </div>
-                            </div>
-                        </span>
-                    @endif
+        <li class="dropdown">
+            <button class="dropbtn">
+                <img style="width: 15px"
+                    src="{{ asset('design-9/assets/flags/' . app()->getLocale() . '.png') }}"
+                    alt="flags">
+                {{ strtoupper(app()->getLocale()) }}
+            </button>
+            <ul class="dropdown-content">
+                @foreach ($descriptions as $description => $value)
+                    {{-- {{ dd(Config::get('app.languages') ) }} --}}
+                    @foreach (Config::get('app.languages') as $language => $locale)
+                        @if ($description == $locale)
+                            <li>
+                                <a href="{{ url("lang/$locale") }}">
+                                    <img alt="{{ strtoupper(app()->getLocale()) }}"
+                                        src="{{ asset("design-9/assets/flags/$locale.png") }}"
+                                        width="20" height="15"> @php echo __('welcome.'.$language) @endphp</a>
+                            </li>
+                        @endif
+                    @endforeach
                 @endforeach
-            @endforeach
-        </div>
+            </ul>
+        </li>
     </div>
     <!-- ======= Header ======= -->
     <header id="header">
@@ -192,9 +190,9 @@
 
 
                 <ul>
-                    <li><a class="nav-link" href="#welcome">@lang('Welcome.Welcome')</a></li>
+                    <li><a class="nav-link" href="#welcome">@lang('welcome.Welcome')</a></li>
                     <li><a class="nav-link" href="#services">FAQ</a></li>
-                    <li><a class="nav-link" href="#contact">@lang('Welcome.Contact')</a></li>
+                    <li><a class="nav-link" href="#contact">@lang('welcome.Contact')</a></li>
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -261,7 +259,6 @@
 
             <div class="section-title mb-4">
                 <h2>FAQ</h2>
-                <h2>@lang('welcome.Find answers to frequently asked questions here')</h2>
             </div>
 
             <div class="row d-flex align-items-stretch">

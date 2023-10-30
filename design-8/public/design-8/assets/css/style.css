@@ -345,6 +345,13 @@ h6 {
   padding: 0 15px;
 }
 
+@media only screen and (max-width: 600px) {
+  #hero .hero-container {
+  top: 280px;
+
+  }
+}
+
 #hero h1 {
   margin: 0 0 10px 0;
   font-size: 64px;
