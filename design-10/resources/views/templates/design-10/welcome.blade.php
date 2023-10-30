@@ -114,7 +114,7 @@
                         style="background-image: url({{ asset('design-10/assets/img/slide/slide-1.jpg') }});">
                         <div class="carousel-container">
                             <div class="carousel-content">
-                                <h2>@lang('Welcome.Welcome')</h2>
+                                <h2>@lang('welcome.Welcome')</h2>
                                 <p style="max-width: 800px" class="text-white animate__animated animate__fadeInUp">
                                     @lang('welcome.If you see') <a href="{{ $domain }}"
                                         target="_blank">{{ $domain_name }}</a>
@@ -218,7 +218,7 @@
 
 
         <!-- ======= Info Box Section ======= -->
-        <section class="info-box py-0">
+        <section id="faq" class="info-box py-0">
             <div class="container-fluid">
 
                 <div class="row">
@@ -369,7 +369,7 @@
 
             <div class="container">
                 <div class="section-title">
-                    <h2>@lang('Welcome.Contact')</h2>
+                    <h2>@lang('welcome.Contact')</h2>
                 </div>
             </div>
 

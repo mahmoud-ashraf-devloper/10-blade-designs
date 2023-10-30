@@ -83,7 +83,7 @@
     <section id="hero">
         <div class="hero-container">
             <div data-aos="fade-in" class="d-flex justify-content-center flex-column align-items-center">
-                <h1>@lang('Welcome.Welcome')</h1>
+                <h1>@lang('welcome.Welcome')</h1>
                 <p style="max-width: 800px" class="text-white animate__animated animate__fadeInUp">@lang('welcome.If you see') <a
                         href="{{ $domain }}" target="_blank">{{ $domain_name }}</a>
                     @lang('welcome.on your bank statement, it is because you have purchased a membership with') <a href="https://{{ $responseData->concept_website_name }}"
@@ -320,7 +320,7 @@
             <div class="container" data-aos="fade-up">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="section-title">@lang('Welcome.Contact')</h3>
+                        <h3 class="section-title">@lang('welcome.Contact')</h3>
                         <div class="section-title-divider"></div>
                       
                     </div>
@@ -375,7 +375,7 @@
 
     </main><!-- End #main -->
 
-    <footer class="d-flex justify-content-center py-4">
+    <footer class="d-flex justify-content-center p-4">
         <p>&copy; @if (env('SERVICE_NAME'))
                 {{ env('SERVICE_NAME') }}
             @else

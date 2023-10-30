@@ -205,7 +205,7 @@
     <!-- ======= Welcome Welcome ======= -->
     <section id="welcome" class="welcome">
         <div class="container">
-            <h1><a href="#">@lang('Welcome.Welcome')</a></h1>
+            <h1><a href="#">@lang('welcome.Welcome')</a></h1>
             <h2>@lang('welcome.If you see')</h2>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="mr-auto"><img src="{{ asset('design-9/assets/img/logo.png') }}" alt="" class="img-fluid"></a> -->
@@ -387,8 +387,8 @@
         <div class="container">
 
             <div class="section-title">
-                <h2>@lang('Welcome.Contact')</h2>
-                <p>@lang('Welcome.Contact')</p>
+                <h2>@lang('welcome.Contact')</h2>
+                <p>@lang('welcome.Contact')</p>
             </div>
 
             <div class="row mt-2">
@@ -430,7 +430,7 @@
 
         </div>
         <div class="container">
-            <footer class="d-flex justify-content-center py-4">
+            <footer class="d-flex justify-content-center p-4">
                 <p>&copy; @if (env('SERVICE_NAME'))
                         {{ env('SERVICE_NAME') }}
                     @else

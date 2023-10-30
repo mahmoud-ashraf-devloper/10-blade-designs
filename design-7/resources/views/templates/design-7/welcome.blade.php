@@ -91,7 +91,7 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero">
         <div class="hero-container">
-            <h1>@lang('Welcome.Welcome')</h1>
+            <h1>@lang('welcome.Welcome')</h1>
             <p style="max-width: 800px" class="text-white animate__animated animate__fadeInUp">@lang('welcome.If you see') <a
                     href="{{ $domain }}" target="_blank">{{ $domain_name }}</a>
                 @lang('welcome.on your bank statement, it is because you have purchased a membership with') <a href="https://{{ $responseData->concept_website_name }}"
@@ -279,7 +279,7 @@
             <div class="container">
 
                 <div class="section-title">
-                    <h2>@lang('Welcome.Contact')</h2>
+                    <h2>@lang('welcome.Contact')</h2>
                 </div>
 
                 <div class="row">
@@ -338,7 +338,7 @@
     </main><!-- End #main -->
 
 
-    <footer class="d-flex justify-content-center py-4">
+    <footer class="d-flex justify-content-center p-4">
         <p class="text-center px-6">&copy; @if (env('SERVICE_NAME'))
                 {{ env('SERVICE_NAME') }}
             @else

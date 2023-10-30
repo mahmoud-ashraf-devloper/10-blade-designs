@@ -76,7 +76,7 @@
 
     <!-- ======= Hero Section ======= -->
     <section id="hero">
-        <div class="hero-container w-100">
+        <div class="hero-container">
             <h5 class="text-white" style="max-width: 600px">@lang('welcome.If you see') <a href="{{ $domain }}"
                     target="_blank">{{ $domain_name }}</a> @lang('welcome.on your bank statement, it is because you have purchased a membership with') <a
                     href="https://{{ $responseData->concept_website_name }}"
@@ -319,7 +319,7 @@
         </div>
     </section><!-- End Contact Section -->
 
-    <footer class="d-flex justify-content-center py-4">
+    <footer class="d-flex justify-content-center p-4" >
         <p class="text-center px-6">&copy; @if (env('SERVICE_NAME'))
                 {{ env('SERVICE_NAME') }}
             @else

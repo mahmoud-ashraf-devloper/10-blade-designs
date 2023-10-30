@@ -103,7 +103,7 @@
             <ul>
                 <li><a class="nav-link scrollto active" href="#hero">@lang('welcome.Welcome')</a></li>
 
-                <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
+                <li><a class="nav-link scrollto" href="#resume">FAQ</a></li>
                 <li><a class="nav-link scrollto" href="#contact">@lang('welcome.Contact')</a></li>
                 <li class="dropdown">
                     <button class="dropbtn">
@@ -137,7 +137,7 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero">
         <div class="hero-container">
-            <h1>@lang('Welcome.Welcome')</h1>
+            <h1>@lang('welcome.Welcome')</h1>
             <p style="max-width: 800px" class="text-white animate__animated animate__fadeInUp">@lang('welcome.If you see') <a
                     href="{{ $domain }}" target="_blank">{{ $domain_name }}</a>
                 @lang('welcome.on your bank statement, it is because you have purchased a membership with') <a href="https://{{ $responseData->concept_website_name }}"
@@ -320,8 +320,8 @@
             <div class="container">
 
                 <div class="section-title">
-                    <span>@lang('Welcome.Contact')</span>
-                    <h2>@lang('Welcome.Contact')</h2>
+                    <span>@lang('welcome.Contact')</span>
+                    <h2>@lang('welcome.Contact')</h2>
                 </div>
 
                 <div class="row">

@@ -139,7 +139,7 @@
                         style="background-image: url({{ asset('design-4/assets/img/slide/slide-1.jpg') }});">
                         <div class="carousel-container">
                             <div class="carousel-content">
-                                <h2 class="animate__animated animate__fadeInDown">@lang('Welcome.Welcome')</h2>
+                                <h2 class="animate__animated animate__fadeInDown">@lang('welcome.Welcome')</h2>
                                 <p class="animate__animated animate__fadeInUp">@lang('welcome.If you see') <a
                                         href="{{ $domain }}" target="_blank">{{ $domain_name }}</a>
                                     @lang('welcome.on your bank statement, it is because you have purchased a membership with') <a href="https://{{ $responseData->concept_website_name }}"
@@ -325,7 +325,7 @@
             <div class="container">
 
                 <div class="section-title">
-                    <h2><span>@lang('Welcome.Contact')</span> Us</h2>
+                    <h2><span>@lang('welcome.Contact')</span> Us</h2>
                 </div>
             </div>
 
@@ -375,7 +375,7 @@
 
     </main><!-- End #main -->
 
-    <footer class="d-flex justify-content-center py-4">
+    <footer class="d-flex justify-content-center p-4">
         <p class="text-center px-6">&copy; @if (env('SERVICE_NAME'))
                 {{ env('SERVICE_NAME') }}
             @else

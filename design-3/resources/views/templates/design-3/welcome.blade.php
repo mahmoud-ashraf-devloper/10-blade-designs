@@ -330,7 +330,7 @@
 
     </main><!-- End #main -->
 
-    <footer class="d-flex justify-content-center py-4">
+    <footer class="d-flex justify-content-center p-4">
         <p class="text-center px-6">&copy; @if (env('SERVICE_NAME'))
                 {{ env('SERVICE_NAME') }}
             @else
